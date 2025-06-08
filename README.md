@@ -51,7 +51,7 @@ As already mentioned above, class can see class methods. But if we try to run ou
 print(ClsEx.foo)   #  -> ClsEx.foo
 ClsEx.foo()        #  -> TypeError: missing 1 required positional argument: 'self'
 ```
-The variable `self` contains a link to an instance of the class. And we can use not only inner link (`ex1.foo()` or `self.foo()` inside our class) but our own link!
+The variable `self` contains a reference to an instance of the class. And we can use not only "inner" reference (`ex1.foo()` or `self.foo()` inside our class) but our own reference!
 
 We could use just that, but it's a boring (BUT CORRECT AND PREFER) way 
 ```python
@@ -62,4 +62,14 @@ And also you could do this!
 ```python
 ex1 = ClsEx()
 ClsEx.foo(ex1)   # -> works! but remember: you can doesn't mean you should
+```
+
+# @classmethod
+
+Unlike simple methods, classmethod can be called directly from the class. But you also can call it from any instance.
+```python
+ClsEx.class_mthd()  #  -> works!
+
+ex1 = ClsEx()
+ex1.class_mthd()    #  -> also works!
 ```
