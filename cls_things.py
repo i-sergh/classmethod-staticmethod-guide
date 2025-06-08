@@ -1,7 +1,6 @@
 class ClsEx:
 
     _class_counter = 0
-    _class_mutable = []
 
     def __init__(self):
         self._instance_counter = 0
@@ -25,18 +24,11 @@ class ClsEx:
         cls._class_counter += 1
         print("_class_counter:", cls._class_counter)
 
-        print("Now anyting inside me could see this change")
-
         print("I can be used as an alternative init method.")
 
         inner_ex = cls() # creating instance of a ClsEx inside it's class method 
         print(f"inside me was created a new instance {inner_ex}. And it can see all changes at a class level")
         print("let's look at a new instance counter ", inner_ex._class_counter)
-
-        print("and also, for example, I would be helpful to interact with mutable data types")
-        # just an example of working mutable data types
-        cls._class_mutable.append("a")
-
 
 
     def foo(self, *oter_args, **other_kwargs):
@@ -64,7 +56,7 @@ print("I can see foo: ", end="")
 print(ClsEx.foo)                #  -> ClsEx.foo        | class can see this function 
 #print(ClsEx.foo())             #  -> TypeError        | class can't execute this function WITHOUT instance   
 
-print("\n\n\n")
+print("\n")
 
 # let's do some weird  things 
 # we're creating an instance
@@ -72,20 +64,12 @@ ex1 = ClsEx()
 # and feeding it to our function
 ClsEx.foo(ex1)                  #  -> it works!         |  ok, our class could actually execute it's method only with an instance as the first variable
 
-print("\n\n\n")
+print("\n")
 
 
 ClsEx.class_mthd()              #  -> it works!         | we can run classmethod just using a class variable and we can have access to class-level 
 
-# !!! FAN FACT about mutable data types 
-# If they are declared at class level,
-#  they can change in any instance or call of the class at any time!
-
-# ex1 was created earlier, and we didn't interact with it directly
-# BUUUUT(T)
-print("ex1 instance has changed!", ex1._class_mutable)
-
-print("\n\n\n")
+print("\n")
 
 ClsEx.static_mthd()             #  -> it works          | statimethod works absolutely independently of the class
 ex1.static_mthd()               #  -> it works          |  
